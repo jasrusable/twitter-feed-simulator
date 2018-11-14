@@ -3,7 +3,7 @@ import unittest
 from src.users.lib import (
     build_user_follower_mapping,
     build_user_follower_mapping_for_multiple_follow_events,
-    get_user_list,
+    get_users_from_user_follower_mapping,
     )
 from src.users.persistence import (
     parse_follow_event_file,
@@ -47,7 +47,7 @@ class TestUsers(unittest.TestCase):
         assert parsed_follow_events[0]['followers'] == ['Alan']
 
     def test_get_users_gets_users(self):
-        users = sorted(get_user_list(SAMPLE_USER_FOLLOWER_MAPPING))
+        users = sorted(get_users_from_user_follower_mapping(SAMPLE_USER_FOLLOWER_MAPPING))
         expected_users = sorted(['Alan', 'Martin', 'Ward'])
         assert users == expected_users
 

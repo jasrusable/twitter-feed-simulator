@@ -5,6 +5,7 @@ from src.users.enums import Action
 def parse_follow_event_line(follow_event_line):
     user, action, _followers = (
         follow_event_line
+        # Replace ', ' with ',' so we can split on ' ' for user, action, follower_string seperation.
         .replace(', ', ',')
         .split(' ')
     )
@@ -19,4 +20,7 @@ def parse_follow_event_line(follow_event_line):
 
 def parse_follow_event_file(path):
     follow_events_file = utils.read_text_file(path)
-    return [parse_follow_event_line(line.strip('\n')) for line in follow_events_file]
+    return [
+        parse_follow_event_line(line.strip('\n'))
+        for line in follow_events_file
+    ]

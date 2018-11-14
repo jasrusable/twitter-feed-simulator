@@ -1,6 +1,6 @@
 import click
 
-from src.tweets.persistence import parse_tweet_file
+from src.tweets.persistence import parse_tweet_file, validate_tweet, validate_tweet_line
 from src.tweets.presentation import get_user_feeds_output
 from src.users.persistence import parse_follow_event_file
 from src.users.lib import build_user_follower_mapping_for_multiple_follow_events, get_users_from_user_follower_mapping
@@ -24,7 +24,7 @@ def print_users_feeds(ctx):
     follow_events = parse_follow_event_file(user_mapping_file)
     user_follower_mapping = build_user_follower_mapping_for_multiple_follow_events(follow_events)
     users = sorted(get_users_from_user_follower_mapping(user_follower_mapping))
-    tweets = parse_tweet_file(tweets_file)
+    tweets = parse_tweet_file(tweets_file, line_cb=validate_tweet_line, tweet_cb=validate_tweet)
     output = get_user_feeds_output(users, user_follower_mapping, tweets)
     for line in output:
         print(line)

@@ -1,3 +1,7 @@
+from collections import namedtuple
+
+
+Tweet = namedtuple('Tweet', ['author', 'body'])
 
 
 # TODO: Use generator?

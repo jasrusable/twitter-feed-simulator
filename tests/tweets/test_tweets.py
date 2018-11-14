@@ -2,6 +2,8 @@ import unittest
 from src.tweets.persistence import (
     parse_tweet_file,
     parse_tweet_line,
+    get_reasons_tweet_invalid,
+    get_reasons_tweet_line_invalid,
 )
 from src.tweets.lib import (
     get_user_tweet_feed,
@@ -54,6 +56,21 @@ SAMPLE_FOLLOW_EVENT_FILE_PATH = './sample_data/events.txt'
 
 
 class TestTweets(unittest.TestCase):
+    def test_get_reasons_tweet_line_invalid_handles_missing_seperator(self):
+        invalid_tweet_line = 'Jason :: This is my tweet without the correct sperator!'
+        reasons_tweet_line_invalid = get_reasons_tweet_line_invalid(invalid_tweet_line)
+        assert len(reasons_tweet_line_invalid) == 1
+        assert reasons_tweet_line_invalid[0] == "Missing author/body seperator sequence: '> '."
+
+    def test_get_reasons_tweet_invalid_handles_long_tweet(self):
+        long_tweet = {
+            'author': 'Jason',
+            'body': 'hi' * 100,
+        }
+        reasons_tweet_invalid = get_reasons_tweet_invalid(long_tweet)
+        assert len(reasons_tweet_invalid) == 1
+        assert reasons_tweet_invalid[0] == 'Tweet length exceeds 140 characters.'
+
     def test_parse_tweet_line_parses_tweet_line(self):
         parsed_tweet = parse_tweet_line(SAMPLE_TWEET_DATA[0])
         assert parsed_tweet['author'] == 'Alan'

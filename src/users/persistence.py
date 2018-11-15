@@ -18,9 +18,17 @@ def parse_follow_event_line(follow_event_line):
     }
 
 
-def parse_follow_event_file(path):
+def parse_follow_event_file(path, line_cb=None, follow_event_cb=None):
     follow_events_file = utils.read_text_file(path)
-    return [
-        parse_follow_event_line(line.strip('\n'))
-        for line in follow_events_file
-    ]
+    follow_events = []
+    for index, line in enumerate(follow_events_file):
+        meta = {
+            'line_number': index + 1,
+        }
+        if line_cb:
+            line_cb(line, meta=meta)
+        follow_event = parse_follow_event_line(line.strip('\n'))
+        if follow_event_cb:
+            follow_event_cb(follow_event, meta)
+        follow_events.append(follow_event)
+    return follow_events

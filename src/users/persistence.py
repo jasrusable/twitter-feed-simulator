@@ -2,12 +2,6 @@ from src import utils
 from src.users.enums import Action
 
 
-def validate_follow_event(follow_event, meta):
-    reasons = get_reasons_follow_event_invalid(follow_event)
-    if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
-
-
 def validate_follow_event_line(follow_event_line, meta):
     reasons = get_reasons_follow_event_line_invalid(follow_event_line)
     if reasons:
@@ -17,14 +11,6 @@ def validate_follow_event_line(follow_event_line, meta):
 def get_reasons_follow_event_line_invalid(follow_event_line):
     reasons = []
     action = follow_event_line.split(' ')[1]
-    if action not in [action.value for action in Action]:
-        reasons.append(f"Unknown action: '{action}'.")
-    return reasons or None
-
-
-def get_reasons_follow_event_invalid(follow_event):
-    reasons = []
-    action = follow_event['action']
     if action not in [action.value for action in Action]:
         reasons.append(f"Unknown action: '{action}'.")
     return reasons or None

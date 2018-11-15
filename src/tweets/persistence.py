@@ -4,12 +4,6 @@ from src import utils
 TWEET_LINE_AUTHOR_BODY_SEPERATOR = '> '
 
 
-def validate_tweet(tweet, meta):
-    reasons = get_reasons_tweet_invalid(tweet)
-    if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
-
-
 def validate_tweet_line(tweet_line, meta):
     reasons = get_reasons_tweet_line_invalid(tweet_line)
     if reasons:
@@ -20,13 +14,6 @@ def get_reasons_tweet_line_invalid(tweet_line):
     reasons = []
     if TWEET_LINE_AUTHOR_BODY_SEPERATOR not in tweet_line:
         reasons.append(f"Missing author/body seperator sequence: '{TWEET_LINE_AUTHOR_BODY_SEPERATOR}'.")
-    return reasons or None
-
-
-def get_reasons_tweet_invalid(tweet):
-    reasons = []
-    if len(tweet['body']) > 140:
-        reasons.append(f'Tweet length exceeds 140 characters.')
     return reasons or None
 
 

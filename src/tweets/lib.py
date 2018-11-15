@@ -17,3 +17,16 @@ def get_user_tweet_feed(user, followers, tweets):
         if author == user or author in followers:
             feed.append(tweet)
     return feed
+
+
+def get_reasons_tweet_invalid(tweet):
+    reasons = []
+    if len(tweet['body']) > 140:
+        reasons.append(f'Tweet length exceeds 140 characters.')
+    return reasons or None
+
+
+def validate_tweet(tweet, meta):
+    reasons = get_reasons_tweet_invalid(tweet)
+    if reasons:
+        raise Exception(f'{reasons[0]} meta: {str(meta)}')

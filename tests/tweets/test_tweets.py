@@ -2,11 +2,11 @@ import unittest
 from src.tweets.persistence import (
     parse_tweet_file,
     parse_tweet_line,
-    get_reasons_tweet_invalid,
     get_reasons_tweet_line_invalid,
 )
 from src.tweets.lib import (
     get_user_tweet_feed,
+    get_reasons_tweet_invalid,
 )
 from src.tweets.presentation import (
     format_tweet,

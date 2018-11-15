@@ -1,13 +1,14 @@
-from src.tweets.persistence import parse_tweet_file, validate_tweet, validate_tweet_line
+from src.tweets.persistence import parse_tweet_file, validate_tweet_line
+from src.tweets.lib import validate_tweet
 from src.tweets.presentation import get_user_feeds_output
 from src.users.persistence import (
     parse_follow_event_file,
-    validate_follow_event,
     validate_follow_event_line,
 )
 from src.users.lib import (
     build_user_follower_mapping_for_multiple_follow_events,
     get_users_from_user_follower_mapping,
+    validate_follow_event,
 )
 
 

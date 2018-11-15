@@ -4,11 +4,11 @@ from src.users.lib import (
     build_user_follower_mapping,
     build_user_follower_mapping_for_multiple_follow_events,
     get_users_from_user_follower_mapping,
-    )
+    get_reasons_follow_event_invalid,
+)
 from src.users.persistence import (
     parse_follow_event_file,
     parse_follow_event_line,
-    get_reasons_follow_event_invalid,
     get_reasons_follow_event_line_invalid,
 )
 

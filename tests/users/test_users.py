@@ -23,7 +23,7 @@ SAMPLE_USER_FOLLOWER_MAPPING = {
     'Alan': ['Martin'],
 }
 
-SAMPLE_FOLLOW_EVENT_FILE_PATH = './sample_data/events.txt'
+SAMPLE_FOLLOW_EVENT_FILE_PATH = './sample_data/follow_events.txt'
 
 
 class TestUsers(unittest.TestCase):

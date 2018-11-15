@@ -13,6 +13,9 @@ from src.users.lib import (
 
 
 def get_users_feeds_from_follow_events_and_tweets_files(follow_events_file_path, tweets_file_path):
+    """
+    Returns a list of formatted strings of users and there tweet feeds.
+    """
     follow_events = parse_follow_event_file(
         follow_events_file_path,
         line_cb=validate_follow_event_line,

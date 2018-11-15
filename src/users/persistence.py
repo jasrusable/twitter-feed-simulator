@@ -37,6 +37,7 @@ def parse_follow_event_line(follow_event_line):
         .replace(', ', ',')
         .split(' ')
     )
+    # TODO: Should this assertion be here if we are validating seperately elsewhere?
     assert action in [action.value for action in Action]
     followers = _followers.split(',')
     return {

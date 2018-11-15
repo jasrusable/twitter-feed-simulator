@@ -11,7 +11,7 @@ def format_tweet(tweet):
 
 def get_user_feed_output(user, followers, tweets):
     """
-    Returns a list of formatted strings for a user's feed.
+    Returns a list of formatted strings for a single user's feed.
     """
     result = [user]
     user_feed = get_user_tweet_feed(user, followers, tweets)
@@ -22,7 +22,7 @@ def get_user_feed_output(user, followers, tweets):
 
 def get_user_feeds_output(users, user_follower_mapping, tweets):
     """
-    Returns a list of formatted strings for user feeds.
+    Returns a list of formatted strings for multiple user's feeds.
     """
     result = []
     for user in users:

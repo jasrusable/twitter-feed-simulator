@@ -8,11 +8,12 @@ Tweet = namedtuple('Tweet', ['author', 'body'])
 # TODO: Rename to filter_tweets?
 def get_user_tweet_feed(user, followers, tweets):
     """
-    Filter tweets on author followers.
+    Filter tweets by author and their followers.
     Returns filtered list of tweets.
     """
     feed = []
     for tweet in tweets:
-        if tweet['author'] in followers or tweet['author'] == user:
+        author = tweet['author']
+        if author == user or author in followers:
             feed.append(tweet)
     return feed

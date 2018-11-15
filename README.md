@@ -21,7 +21,7 @@ From the parent directory, run the following command to display the help text & 
 
 ### Simple example
 
-```python cli.py --tweets-file ./sample_data/tweets.txt --user-mapping-file ./sample_data/events.txt print-users-feeds```
+```python cli.py --tweets-file ./sample_data/tweets.txt --follow-events-file ./sample_data/follow_events.txt print-users-feeds```
 
 ## Tests
 

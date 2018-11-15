@@ -8,6 +8,8 @@ from src.users.lib import (
 from src.users.persistence import (
     parse_follow_event_file,
     parse_follow_event_line,
+    get_reasons_follow_event_invalid,
+    get_reasons_follow_event_line_invalid,
 )
 
 
@@ -27,6 +29,23 @@ SAMPLE_FOLLOW_EVENT_FILE_PATH = './sample_data/follow_events.txt'
 
 
 class TestUsers(unittest.TestCase):
+    def test_get_reasons_follow_event_line_invalid_handles_unknown_action(self):
+        invalid_action = 'some-action'
+        invalid_follow_event_line = f'Jason {invalid_action} Sarah'
+        reasons_follow_event_line_invalid = get_reasons_follow_event_line_invalid(invalid_follow_event_line)
+        assert len(reasons_follow_event_line_invalid) == 1
+        assert reasons_follow_event_line_invalid[0] == f"Unknown action: '{invalid_action}'."
+
+    def test_get_reasons_follow_event_invalid_handles_unknown_action(self):
+        follow_event = {
+            'user': 'Jason',
+            'action': 'SOME_UNKNOWN_ACTION',
+            'followers': 'James',
+        }
+        reasons_follow_event_invalid = get_reasons_follow_event_invalid(follow_event)
+        assert len(reasons_follow_event_invalid) == 1
+        assert reasons_follow_event_invalid[0] == "Unknown action: 'SOME_UNKNOWN_ACTION'."
+
     def test_parse_follow_event_line_parses_follow_event_line(self):
         parsed_follow_event = parse_follow_event_line(SAMPLE_FOLLOW_EVENT_DATA[0])
         assert parsed_follow_event['user'] == 'Ward'

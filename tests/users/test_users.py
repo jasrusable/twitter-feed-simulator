@@ -37,14 +37,15 @@ class TestUsers(unittest.TestCase):
         assert reasons_follow_event_line_invalid[0] == f"Unknown action: '{invalid_action}'."
 
     def test_get_reasons_follow_event_invalid_handles_unknown_action(self):
+        invalid_action = 'some-action'
         follow_event = {
             'user': 'Jason',
-            'action': 'SOME_UNKNOWN_ACTION',
+            'action': invalid_action,
             'followers': 'James',
         }
         reasons_follow_event_invalid = get_reasons_follow_event_invalid(follow_event)
         assert len(reasons_follow_event_invalid) == 1
-        assert reasons_follow_event_invalid[0] == "Unknown action: 'SOME_UNKNOWN_ACTION'."
+        assert reasons_follow_event_invalid[0] == f"Unknown action: '{invalid_action}'."
 
     def test_parse_follow_event_line_parses_follow_event_line(self):
         parsed_follow_event = parse_follow_event_line(SAMPLE_FOLLOW_EVENT_DATA[0])

@@ -33,11 +33,11 @@ def get_reasons_follow_event_invalid(follow_event):
 def parse_follow_event_line(follow_event_line):
     user, action, _followers = (
         follow_event_line
-        # For simpiler splitting of followers below.
+        # For simpler splitting of followers below.
         .replace(', ', ',')
         .split(' ')
     )
-    # TODO: Should this assertion be here if we are validating seperately elsewhere?
+    # TODO: Should this assertion be here if we are validating separately elsewhere?
     assert action in [action.value for action in Action]
     followers = _followers.split(',')
     return {

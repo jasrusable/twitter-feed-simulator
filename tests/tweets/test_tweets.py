@@ -57,7 +57,7 @@ SAMPLE_FOLLOW_EVENT_FILE_PATH = './sample_data/events.txt'
 
 class TestTweets(unittest.TestCase):
     def test_get_reasons_tweet_line_invalid_handles_missing_seperator(self):
-        invalid_tweet_line = 'Jason :: This is my tweet without the correct sperator!'
+        invalid_tweet_line = 'Jason :: This is my tweet without the correct separator!'
         reasons_tweet_line_invalid = get_reasons_tweet_line_invalid(invalid_tweet_line)
         assert len(reasons_tweet_line_invalid) == 1
         assert reasons_tweet_line_invalid[0] == "Missing author/body seperator sequence: '> '."

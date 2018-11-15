@@ -1,11 +1,12 @@
 from src import utils
 from src.users.enums import Action
+from src.users.exceptions import InvalidFollowEventLine
 
 
 def validate_follow_event_line(follow_event_line, meta):
     reasons = get_reasons_follow_event_line_invalid(follow_event_line)
     if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
+        raise InvalidFollowEventLine(f'{reasons[0]} meta: {str(meta)}')
 
 
 def get_reasons_follow_event_line_invalid(follow_event_line):

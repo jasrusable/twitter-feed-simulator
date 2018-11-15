@@ -1,4 +1,5 @@
 from src import utils
+from src.tweets.exceptions import InvalidTweetLine
 
 
 TWEET_LINE_AUTHOR_BODY_SEPERATOR = '> '
@@ -7,7 +8,7 @@ TWEET_LINE_AUTHOR_BODY_SEPERATOR = '> '
 def validate_tweet_line(tweet_line, meta):
     reasons = get_reasons_tweet_line_invalid(tweet_line)
     if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
+        raise InvalidTweetLine(f'{reasons[0]} meta: {str(meta)}')
 
 
 def get_reasons_tweet_line_invalid(tweet_line):

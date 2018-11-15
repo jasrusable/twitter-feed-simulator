@@ -1,4 +1,5 @@
 from collections import namedtuple
+from src.tweets.exceptions import InvalidTweet
 
 
 Tweet = namedtuple('Tweet', ['author', 'body'])
@@ -7,7 +8,7 @@ Tweet = namedtuple('Tweet', ['author', 'body'])
 def validate_tweet(tweet, meta):
     reasons = get_reasons_tweet_invalid(tweet)
     if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
+        raise InvalidTweet(f'{reasons[0]} meta: {str(meta)}')
 
 
 def get_reasons_tweet_invalid(tweet):

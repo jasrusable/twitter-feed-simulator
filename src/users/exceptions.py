@@ -1,0 +1,2 @@
+class InvalidFollowEvent(Exception):
+    pass

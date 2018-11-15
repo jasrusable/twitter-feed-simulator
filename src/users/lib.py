@@ -1,13 +1,21 @@
 from src.users.enums import Action
+from src.users.exceptions import InvalidFollowEvent
 
 
 def validate_follow_event(follow_event, meta):
+    """
+    Validates a follow_event.
+    Raises for invalid follow_event.
+    """
     reasons = get_reasons_follow_event_invalid(follow_event)
     if reasons:
-        raise Exception(f'{reasons[0]} meta: {str(meta)}')
+        raise InvalidFollowEvent(f'{reasons[0]} meta: {str(meta)}')
 
 
 def get_reasons_follow_event_invalid(follow_event):
+    """
+    Returns reasons a follow_event is invalid.
+    """
     reasons = []
     action = follow_event['action']
     if action not in [action.value for action in Action]:

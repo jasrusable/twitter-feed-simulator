@@ -1,0 +1,2 @@
+class InvalidTweet(Exception):
+    pass
